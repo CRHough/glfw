@@ -298,12 +298,12 @@
 
   | Shapes |
   | ------ |
-  | arrow-cursor |
-  | ibeam-cursor |
-  | crosshair-cursor |
-  | hand-cursor |
-  | hresize-cursor |
-  | vresize-cursor |
+  | ::arrow-cursor |
+  | ::ibeam-cursor |
+  | ::crosshair-cursor |
+  | ::hand-cursor |
+  | ::hresize-cursor |
+  | ::vresize-cursor |
 
   ## Note
   * This function must only be called from the main thread.
