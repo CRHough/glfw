@@ -8,4 +8,5 @@
                  [org.lwjgl/lwjgl "3.1.2" :classifier "natives-macos" :native-prefix ""]
                  [org.lwjgl/lwjgl "3.1.2" :classifier "natives-windows" :native-prefix ""]
                  [org.lwjgl/lwjgl-vulkan "3.1.2"]
-                 [org.lwjgl/lwjgl-glfw "3.1.2"]])
+                 [org.lwjgl/lwjgl-glfw "3.1.2"]]
+  :codox {:metadata {:doc/format :markdown}})
