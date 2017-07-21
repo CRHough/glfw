@@ -277,15 +277,15 @@
 
   The cursor hotspot is specified in pixels, relative to the upper-left corner of the cursor image. Like all other coordinate systems in GLFW, the X-axis points to the right and the Y-axis points down.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * The specified image data is copied before this function returns.
 
-  ### Parameters
+  ## Parameters
   image - the desired cursor image
   [x y] - the desired x and y coordinates, in pixels, of the cursor hotspot
 
-  ### Returns
+  ## Returns
   the handle of the created cursor, or nil if an error occurred"
   [image [x y]]
   (let [IMAGE (impl/map->GLFWImage image)
@@ -305,14 +305,14 @@
   | hresize-cursor |
   | vresize-cursor |
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * The specified image data is copied before this function returns.
 
-  ### Parameters
+  ## Parameters
   shape - one of the standard shapes.
 
-  ### Returns
+  ## Returns
   a new cursor ready to use or nil if an error occured"
   [shape]
   (let [SHAPE (int (interpret shape))]
@@ -341,7 +341,7 @@
 
   The swap interval is not set during window creation and the initial value may vary depending on driver settings and defaults.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * Windows: Window creation will fail if the Microsoft GDI software OpenGL implementation is the only one available.
   * Windows: If the executable has an icon resource named glfw-icon, it will be set as the initial icon for the window. If no such icon is present, the idi-winlogo icon will be used instead. To set a different icon, see [[set-window-icon]].
@@ -354,13 +354,13 @@
   * X11: Some window managers will not respect the placement of initially hidden windows.
   * X11: Due to the asynchronous nature of X11, it may take a moment for a window to reach its requested state. This means you may not be able to query the final size, position or other attributes directly after window creation.
 
-  ### Parameters
+  ## Parameters
   1. [width height] - the desired width and height, in screen coordinates, of the window
   2. title - initial UTF-8 encoded window title
   3. monitor - the monitor to use for fullscreen mode, or nil for windowed mode
   4. share - the window whose context to share resources with, or nil to not share resources
 
-  ### Returns
+  ## Returns
   the handle of the created window, or nil if an error occurred"
   [[width height] title monitor share]
   (let [WIDTH (int width)
@@ -377,7 +377,7 @@
 
   See [[window-hint]] for details.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread."
   []
   (GLFW/glfwDefaultWindowHints))
@@ -387,11 +387,11 @@
 
   Any remaining cursors will be destroyed by terminate.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * This function must not be called from a callback.
 
-  ### Parameters
+  ## Parameters
   1. cursor - the cursor object to destroy"
   [cursor]
   (let [CURSOR (long cursor)]
@@ -404,12 +404,12 @@
 
    If the context of the specified window is current on the main thread, it is detached before being destroyed.
 
-   ### Note
+   ## Note
    * This function must only be called from the main thread.
    * This function must not be called from a callback.
    * The context of the specified window must not be current on any other thread when this function is called.
 
-   ### Parameters
+   ## Parameters
    1. window - the window to destroy"
   [window]
   (let [WINDOW (long window)]
@@ -426,13 +426,13 @@
 
   This function does not apply to Vulkan. If you are using Vulkan, see [[get-required-instance-extensions]], vkEnumerateInstanceExtensionProperties and vkEnumerateDeviceExtensionProperties instead.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
 
-  ### Parameters
+  ## Parameters
   extension - the ASCII encoded name of the extension
 
-  ### Returns
+  ## Returns
   true if the extension is available, or false otherwise"
   [extension]
   (let [EXTENSION (impl/seq->ByteBuffer extension)]
@@ -449,10 +449,10 @@
 
   For a less disruptive way of getting the user's attention, see [[request-window-attention]].
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to give input focus"
   [window]
   (let [WINDOW (long window)]
@@ -463,13 +463,13 @@
 
   If the clipboard is empty or if its contents cannot be converted, nil is returned and a format-unavailable error is generated.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window that will request the clipboard contents
 
-  ### Returns
+  ## Returns
   the contents of the clipboard as a UTF-8 encoded string, or nil if an error occurred"
   ^java.lang.String
   [window]
@@ -481,10 +481,10 @@
 
   Returns the window whose OpenGL or OpenGL ES context is current on the calling thread.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
 
-  ### Returns
+  ## Returns
   the window whose context is current, or nil if no window's context is current"
   []
   (impl/null->nil (GLFW/glfwGetCurrentContext)))
@@ -494,13 +494,13 @@
 
   If the cursor is disabled (with cursor-disabled) then the cursor position is unbounded and limited only by the minimum and maximum values of a double.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the desired window
 
-  ### Returns
+  ## Returns
   a vector containing the x and y values"
   [window]
   (let [WINDOW (long window)
@@ -517,11 +517,11 @@
 
   This function returns and clears the error code of the last error that occurred on the calling thread. If no error has occurred since the last call, it returns no-error.
 
-  ### Note
+  ## Note
   * This function may be called before init.
   * This function may be called from any thread.
 
-  ### Returns
+  ## Returns
   the last error code for the calling thread, or no-error"
   (GLFW/glfwGetError))
 
@@ -530,13 +530,13 @@
 
   If you wish to retrieve the size of the window in screen coordinates, see [[get-window-size]].
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose framebuffer to query
 
-  ### Returns
+  ## Returns
   a vector containing the width and height values"
   [window]
   (let [WINDOW (long window)
@@ -551,13 +551,13 @@
 (defn get-gamma-ramp
   "Returns the current gamma ramp of the specified monitor.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. monitor - the monitor to query
 
-  ### Returns
+  ## Returns
   the current gamma ramp, or nil if an error occurred"
   [monitor]
   (let [MONITOR (long monitor)
@@ -575,14 +575,14 @@
   | sticky-keys |
   | sticky-mouse-buttons |
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to query
   2. mode - the input mode whose value to return.
 
-  ### Returns
+  ## Returns
   the input mode value"
   [window mode]
   (let [WINDOW (long window)
@@ -596,13 +596,13 @@
 
   Querying a joystick ID with no device present is not an error, but will cause this function to return nil. Call [[joystick-present]] to check device presence.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. jid - the joystick to query
 
-  ### Returns
+  ## Returns
   an array of axis values, or nil if the joystick is not present"
   [jid]
   (let [JID (int jid)
@@ -618,13 +618,13 @@
 
   Querying a joystick ID with no device present is not an error, but will cause this function to return nil. Call [[joystick-present]] to check device presence.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. jid - the joystick to query
 
-  ### Returns
+  ## Returns
   an array of button states, or NULL if the joystick is not present"
   [jid]
   (let [JID (int jid)
@@ -652,14 +652,14 @@
 
   Querying a joystick ID with no device present is not an error, but will cause this function to return nil. Call [[joystick-present]] to check device presence.
 
-  ### Note
+  ## Note
   * Linux: Joystick hats are currently unimplemented.
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. jid - the joystick to query
 
-  ### Returns
+  ## Returns
   an set of hat states, or nil if the joystick is not present or an error occurred"
   [jid]
   (let [JID (int jid)
@@ -683,13 +683,13 @@
 
   Querying a joystick ID with no device present is not an error, but will cause this function to return nil. Call [[joystick-present]] to check device presence.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   jid - the joystick to query
 
-  ### Returns
+  ## Returns
   the UTF-8 encoded name of the joystick, or nil if the joystick is not present"
   ^java.lang.String
   [jid]
@@ -709,15 +709,15 @@
 
   Do not use this function to implement text input.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * key-unkown is not a valid key for this function.
 
-  ### Parameters
+  ## Parameters
   1. window - the desired window
   2. key - the desired keyboard key
 
-  ### Returns
+  ## Returns
   one of press or release"
   [window key]
   (let [WINDOW (long window)
@@ -764,14 +764,14 @@
 
   Names for printable keys depend on keyboard layout, while names for non-printable keys are the same across layouts but depend on the application language and should be localized along with other user interface text.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. key - the key to query, or key-unkown
   2. scancode - the scancode of the key to query
 
-  ### Returns
+  ## Returns
   the UTF-8 encoded, layout-specific name of the key, or nil"
   ^java.lang.String
   [key scancode]
@@ -786,13 +786,13 @@
 
   If the key is key-unkown or does not exist on the keyboard this method will return nil.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
 
-  ### Parameters
+  ## Parameters
   1. key - the key to query, or key-unkown
 
-  ### Returns
+  ## Returns
   the platform dependent scancode for the key, or nil if an errror occurred"
   [key]
   (let [KEY (int (interpret key))
@@ -804,13 +804,13 @@
 
   The name typically reflects the make and model of the monitor and is not guaranteed to be unique among the connected monitors.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. monitor - the monitor to query
 
-  ### Returns
+  ## Returns
   the UTF-8 encoded name of the monitor, or nil if an error occured"
   ^java.lang.String
   [monitor]
@@ -822,14 +822,14 @@
 
   Some systems do not provide accurate monitor size information, either because the monitor EDID data is incorrect or because the driver does not report it accurately.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * Windows: The OS calculates the returned physical size from the current resolution and system DPI instead of querying the monitor EDID data.
 
-  ### Parameters
+  ## Parameters
   * monitor - the monitor to query
 
-  ### Returns
+  ## Returns
   a vector containing the width and height values"
   [monitor]
   (let [MONITOR (long monitor)
@@ -844,13 +844,13 @@
 (defn get-monitor-pos
   "Returns the [x y] position, in screen coordinates, of the upper-left corner of the specified monitor.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. monitor - the monitor to query
 
-  ### Returns
+  ## Returns
   a vector containing the x and y values"
   [monitor]
   (let [MONITOR (long monitor)
@@ -867,10 +867,10 @@
 
   The primary monitor is always first in the returned array. If no monitors were found, this function returns nil.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Returns
+  ## Returns
   an array of monitor handlers, or NULL if no monitors were found or if an error occured"
   []
   (impl/PointerBuffer->seq (impl/null->nil (GLFW/glfwGetMonitors))))
@@ -882,14 +882,14 @@
 
   If the sticky-mouse-buttons input mode is enabled, this function returns PRESS the first time you call it for a mouse button that has been pressed, even if that mouse button has already been released.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the desired window
   2. button - the desired mouse button
 
-  ### Returns
+  ## Returns
   one of press or release"
   [window button]
   (let [WINDOW (long window)
@@ -904,11 +904,11 @@
 
   This is usually the monitor where elements like the task bar or global menu bar are located.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * The primary monitor is always first in the array returned by GetMonitors.
 
-  ### Returns
+  ## Returns
   the primary monitor, or nil if no monitors were found or if an error occured"
   []
   (impl/null->nil (GLFW/glfwGetPrimaryMonitor)))
@@ -920,16 +920,16 @@
 
   This function does not apply to Vulkan. If you are rendering with Vulkan, get-instance-proc-address, vkGetInstanceProcAddr and vkGetDeviceProcAddr instead.
 
-  ### Note
+  ## Note
   * The address of a given function is not guaranteed to be the same between contexts.
   * This function may return a non-nil address despite the associated version or extension not being available. Always check the context version or extension string first.
   * The returned function pointer is valid until the context is destroyed or the library is terminated.
   * This function may be called from any thread.
 
-  ### Parameters
+  ## Parameters
   procname - the ASCII encoded name of the function
 
-  ### Returns
+  ## Returns
   the address of the function, or nil if an error occured"
   [procname]
   (let [PROCNAME (impl/str->ByteBuffer procname)
@@ -944,11 +944,11 @@
 
   The resolution of the timer is system dependent, but is usually on the order of a few micro- or nanoseconds. It uses the highest-resolution monotonic time source on each supported platform.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
   * Reading and writing of the internal timer offset is not atomic, so it needs to be externally synchronized with calls to set-time.
 
-  ### Returns
+  ## Returns
   the current value, in seconds, or nil if an error occurred"
   []
   (impl/null->nil (GLFW/glfwGetTime)))
@@ -958,7 +958,7 @@
 
   This function may be called from any thread.
 
-  ### Returns
+  ## Returns
   the frequency of the timer, in Hz, or nil if an error occurred"
   []
   (impl/null->nil (GLFW/glfwGetTimerFrequency)))
@@ -968,10 +968,10 @@
 
   This function returns the current value of the raw timer, measured in 1 / frequency seconds. To get the frequency, call [[get-timer-frequency]].
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
 
-  ### Returns
+  ## Returns
   the value of the timer, or nil if an error occurred"
   []
   (impl/null->nil (GLFW/glfwGetTimerValue)))
@@ -981,12 +981,12 @@
 
   It is intended for when you are using GLFW as a shared library and want to ensure that you are using the minimum required version.
 
-  ### Note
+  ## Note
   * This function always succeeds.
   * This function may be called before init.
   * This function may be called from any thread.
 
-  ### Returns
+  ## Returns
   a map containing major, minor and revision keys with the associated values"
   []
   (let [MAJOR (MemoryUtil/memAllocInt 1)
@@ -1008,13 +1008,13 @@
 
   Do not use the version string to parse the GLFW library version. The get-version function already provides the version of the library binary in numerical format.
 
-  ### Note
+  ## Note
   * This function always succeeds.
   * This function may be called before init.
   * This function may be called from any thread.
   * The returned string is static and compile-time generated.
 
-  ### Returns
+  ## Returns
   The ASCII encoded GLFW version string."
   ^java.lang.String
   []
@@ -1025,13 +1025,13 @@
 
   If you have created a full screen window for that monitor, the return value will depend on whether that window is iconified.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. monitor - the monitor to query
 
-  ### Returns
+  ## Returns
   the current mode of the monitor, or nil if an error occurred"
   [monitor]
   (let [MONITOR (long monitor)]
@@ -1042,13 +1042,13 @@
 
   The returned array is sorted in ascending order, first by color bit depth (the sum of all channel depths) and then by resolution area (the product of width and height).
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. monitor - the monitor to query
 
-  ### Returns
+  ## Returns
   an array of video modes, or nil if an error occured"
   [monitor]
   (let [MONITOR (long monitor)]
@@ -1079,11 +1079,11 @@
   | ::context-no-error |
   | ::context-creation-api |
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * Framebuffer related hints are not window attributes.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to query
   2. attrib - the window attribute whose value to return."
   [window attrib]
@@ -1098,13 +1098,13 @@
 
   Because this function retrieves the size of each window frame edge and not the offset along a particular coordinate axis, the retrieved values will always be zero or positive.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose frame size to query
 
-  ### Returns
+  ## Returns
   a map containing left, top, right and bottom keys with the associated values"
   [window]
   (let [WINDOW (long window)
@@ -1126,13 +1126,13 @@
 (defn get-window-monitor
   "Returns the handle of the monitor that the specified window is in full screen on.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to query
 
-  ### Returns
+  ## Returns
   the monitor, or nil if the window is in windowed mode or an error occurred"
   [window]
   (let [WINDOW (long window)]
@@ -1141,10 +1141,10 @@
 (defn get-window-pos
   "Retrieves the [x y] position, in screen coordinates, of the upper-left corner of the client area of the specified window.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to query"
   [window]
   (let [WINDOW (long window)
@@ -1161,10 +1161,10 @@
 
   If you wish to retrieve the size of the framebuffer of the window in pixels, see [[get-framebuffer-size]].
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   window - the window whose size to retrieve"
   [window]
   (let [WINDOW (long window)
@@ -1181,10 +1181,10 @@
 
   The initial value is 0.
 
-  ### Note
+  ## Note
   * This function may be called from any thread. Access is not synchronized.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose pointer to return"
   ^long
   [window]
@@ -1196,10 +1196,10 @@
 
   If the window is already hidden or is in full screen mode, this function does nothing.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to hide"
   [window]
   (let [WINDOW (long window)]
@@ -1212,10 +1212,10 @@
 
   If the specified window is a full screen window, the original monitor resolution is restored until the window is restored.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to iconify"
   [window]
   (let [WINDOW (long window)]
@@ -1229,11 +1229,11 @@
 
   Additional calls to this function after successful initialization but before termination will return true immediately.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * This function will change the current directory of the application to the Contents/Resources subdirectory of the application's bundle, if present. This can be disabled with the cocoa-chdir-resources init hint.
 
-  ### Returns
+  ## Returns
   true if successful, or false if an error occured"
   []
   (impl/int->boolean (GLFW/glfwInit)))
@@ -1246,11 +1246,11 @@
 
   Some hints are platform specific. These are always valid to set on any platform but they will only affect their specific platform. Other platforms will simply ignore them. Setting these hints requires no platform specific headers or calls.
 
-  ### Note
+  ## Note
   * This function may be called before init.
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. hint - the init hint to set. One of: ::joystick-hat-buttons ::cocoa-chdir-resources ::cocoa-menubar
   2. value - the new value of the init hint"
   [hint value]
@@ -1261,13 +1261,13 @@
 (defn joystick-present
   "Returns whether the specified joystick is present.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
   *Parameters
   1. jid - joystick to query
 
-  ### Returns
+  ## Returns
   true if the joystick is present, or false otherwise"
   [jid]
   (let [JID (int jid)]
@@ -1282,7 +1282,7 @@
 
   The specified window must have an OpenGL or OpenGL ES context. Specifying a window without a context will generate a no-window-context error.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
 
   * Parameters
@@ -1298,10 +1298,10 @@
 
   If the specified window is a full screen window, this function does nothing.
 
-  ### Note
+  ## Note
   * This function may only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to maximize"
   [window]
   (let [WINDOW (long window)]
@@ -1318,7 +1318,7 @@
 
   Event processing is not required for joystick input to work.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * This function must not be called from a callback."
   []
@@ -1329,7 +1329,7 @@
 
   If no windows exist, this function returns immediately. For synchronization of threads in applications that do not create windows, use your threading library of choice.
 
-  ### Note
+  ## Note
   * This function may be called from any thread."
   []
   (GLFW/glfwPostEmptyEvent))
@@ -1341,11 +1341,11 @@
 
   Once the user has given attention, usually by focusing the window or application, the system will end the request automatically.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * macOS: Attention is requested to the application as a whole, not the specific window.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to request attention to"
   [window]
   (let [WINDOW (long window)]
@@ -1358,10 +1358,10 @@
 
   If the specified window is a full screen window, the resolution chosen for the window is restored on the selected monitor.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to restore"
   [window]
   (let [WINDOW (long window)]
@@ -1374,14 +1374,14 @@
 
   The character callback behaves as system text input normally does and will not be called if modifier keys are held down that would prevent normal text input on that platform, for example a Super (Command) key on macOS or Alt key on Windows. There is set-char-mods-callback that receives these events.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1393,14 +1393,14 @@
 
   The character with modifiers callback is intended for implementing custom Unicode character input. For regular Unicode text input, see [set-char-callback]. Like the character callback, the character with modifiers callback deals with characters and is keyboard layout dependent. Characters do not map 1:1 to physical keys, as a key may produce zero, one or more characters. If you want to know whether a specific physical key was pressed or released, see [[set-key-callback]] instead.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1412,10 +1412,10 @@
 
   The specified string is copied before this function returns.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   window - the window that will own the clipboard contents
   string - a UTF-8 encoded string"
   [window string]
@@ -1431,10 +1431,10 @@
 
   On some platforms, the set cursor may not be visible unless the window also has input focus.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to set the system cursor for
   2. cursor - the cursor to set, or nil to switch back to the default arrow cursor"
   [window cursor]
@@ -1445,14 +1445,14 @@
 (defn set-cursor-enter-callback
   "Sets the cursor boundary crossing callback of the specified window, which is called when the cursor enters or leaves the client area of the window.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1468,10 +1468,10 @@
 
   If the cursor mode is cursor-disabled then the cursor position is unconstrained and limited only by the minimum and maximum values of double.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the desired window
   2. [xpos ypos] - the desired x and ycoordinates, relative to the left edge of the client area"
   [window [xpos ypos]]
@@ -1485,14 +1485,14 @@
 
   Sets the cursor position callback of the specified window, which is called when the cursor is moved. The callback is provided with the position, in screen coordinates, relative to the upper-left corner of the client area of the window.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1504,14 +1504,14 @@
 
   Because the path array and its strings may have been generated specifically for that event, they are not guaranteed to be valid after the callback has returned. If you wish to use them after the callback returns, you need to make a deep copy.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1528,14 +1528,14 @@
 
   Once set, the error callback remains set even after the library has been terminated.
 
-  ### Note
+  ## Note
   * This function may be called before init.
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [callback]
   (let [CALLBACK (impl/nil->null (impl/fn->GLFWErrorCallback callback))]
@@ -1544,14 +1544,14 @@
 (defn set-framebuffer-size-callback
   "Sets the framebuffer resize callback of the specified window, which is called when the framebuffer of the specified window is resized.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [window callback]
   (let [WINDOW (long window)
@@ -1567,10 +1567,10 @@
 
   For gamma correct rendering with OpenGL or OpenGL ES, see the srgb-capable hint.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. monitor - the monitor whose gamma ramp to set
   2. gamma - the desired exponent"
   [monitor gamma]
@@ -1587,13 +1587,13 @@
 
   For gamma correct rendering with OpenGL or OpenGL ES, see the srgb-capable hint.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * Gamma ramp sizes other than 256 are not supported by all hardware
   * Windows: The gamma ramp size must be 256.
   * The specified gamma ramp is copied before this function returns.
 
-  ### Parameters
+  ## Parameters
   1. monitor - the monitor whose gamma ramp to set
   2. ramp - the gamma ramp to use"
   [monitor ramp]
@@ -1619,10 +1619,10 @@
 
   If mode is sticky-mouse-buttons, the value must be either TRUE to enable sticky mouse buttons, or FALSE to disable it. If sticky mouse buttons are enabled, a mouse button press will ensure that GetMouseButton returns PRESS the next time it is called even if the mouse button had been released before the call. This is useful when you are only interested in whether mouse buttons have been pressed but not when or in which order.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose input mode to set
   2. mode - the input mode to set.
   3. value - the new value of the specified input mode"
@@ -1637,13 +1637,13 @@
 
   This is called when a joystick is connected to or disconnected from the system.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. callback - the new callback, or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [callback]
   (let [CALLBACK (impl/nil->null (impl/fn->GLFWJoystickCallback callback))]
@@ -1660,14 +1660,14 @@
 
   Sometimes GLFW needs to generate synthetic key events, in which case the scancode may be zero.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1681,10 +1681,10 @@
 
   This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. callback - the new callback, or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [callback]
   (let [CALLBACK (impl/nil->null (impl/fn->GLFWMonitorCallback callback))]
@@ -1695,14 +1695,14 @@
 
   When a window loses input focus, it will generate synthetic mouse button release events for all pressed mouse buttons. You can tell these events from user-generated events by the fact that the synthetic ones are generated after the focus loss event has been processed, i.e. after the window focus callback has been called.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1714,14 +1714,14 @@
 
   The scroll callback receives all scrolling input, like that from a mouse wheel or a touchpad scrolling area.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set"
   [window callback]
   (let [WINDOW (long window)
@@ -1733,11 +1733,11 @@
 
   It then continues to count up from that value. The value must be a positive finite number less than or equal to 18446744073.0, which is approximately 584.5 years.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
   * Reading and writing of the internal timer offset is not atomic, so it needs to be externally synchronized with calls to get-time.
 
-  ### Parameters
+  ## Parameters
   1. time - the new value, in seconds"
   [time]
   (let [TIME (double time)]
@@ -1756,7 +1756,7 @@
 
   This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to set limits for
   2. numer - the numerator of the desired aspect ratio, or ::dont-care
   3. denom - the denominator of the desired aspect ratio, or ::dont-care"
@@ -1782,10 +1782,10 @@
   | ::floating |
   | ::auto-iconify |
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to set the attribute for
   2. attrib - the attribute to set.
   3. value - the value to set"
@@ -1802,15 +1802,15 @@
 
   The close callback is not triggered by destroy-window.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * macOS: Selecting Quit from the application menu will trigger the close callback for all windows.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [window callback]
   (let [WINDOW (long window)
@@ -1822,14 +1822,14 @@
 
   After the focus callback is called for a window that lost input focus, synthetic key and mouse button release events will be generated for all such that had been pressed. For more information, see [[set-key-callback]] and [[set-mouse-button-callback]].
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [window callback]
   (let [WINDOW (long window)
@@ -1845,11 +1845,11 @@
 
   The specified image data is copied before this function returns.
 
-  ### Note
+  ## Note
   * macOS: The GLFW window has no icon, as it is not a document window, so this function does nothing. The dock icon will be the same as the application bundle's icon. For more information on bundles, see the Bundle Programming Guide in the Mac Developer Library.
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose icon to set
   2. images - the images to create the icon from. This is ignored if count is zero."
   [window images]
@@ -1868,14 +1868,14 @@
 (defn set-window-maximize-callback
   "Sets the maximization callback of the specified window, which is called when the window is maximized or restored.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [window callback]
   (let [WINDOW (long window)
@@ -1895,10 +1895,10 @@
 
   When a window transitions from full screen to windowed mode, this function restores any previous window settings such as whether it is decorated, floating, resizable, has size or aspect ratio limits, etc.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   window - the window whose monitor, size or video mode to set
   monitor - the desired monitor, or nil to set windowed mode
   [xpos ypos] - the desired x and y coordinates of the upper-left corner of the client area
@@ -1923,10 +1923,10 @@
 
   The window manager may put limits on what positions are allowed. GLFW cannot and should not override these limits.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to query
   2. xpos - the x-coordinate of the upper-left corner of the client area
   3. ypos - the y-coordinate of the upper-left corner of the client area"
@@ -1941,14 +1941,14 @@
 
   The callback is provided with the screen position of the upper-left corner of the client area of the window.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [window callback]
   (let [WINDOW (long window)
@@ -1960,14 +1960,14 @@
 
   On compositing window systems such as Aero, Compiz or Aqua, where the window contents are saved off-screen, this callback may be called only very infrequently or never at all.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [window callback]
   (let [WINDOW (long window)
@@ -1979,10 +1979,10 @@
 
   This can be used to override the user's attempt to close the window, or to signal that it should be closed.
 
-  ### Note
+  ## Note
   * This function may be called from any thread. Access is not synchronized.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose flag to change
   2. value - the new value"
   [window value]
@@ -1999,10 +1999,10 @@
 
   The window manager may put limits on what sizes are allowed. GLFW cannot and should not override these limits.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   window - the window to resize
   [width height] - the desired width and height, in screen coordinates, of the window client area"
   [window [width height]]
@@ -2016,14 +2016,14 @@
 
   The callback is provided with the size, in screen coordinates, of the client area of the window.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose callback to set
   2. callback - the new callback or nil to remove the currently set callback
 
-  ### Returns
+  ## Returns
   the previously set callback, or nil if no callback was set or the library had not been initialized"
   [window callback]
   (let [WINDOW (long window)
@@ -2039,10 +2039,10 @@
 
   The maximum dimensions must be greater than or equal to the minimum dimensions and all must be greater than or equal to zero.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to set limits for
   2. [minwidth minheight] - the minimum dimensions, in screen coordinates, of the client area, or ::dont-care
   3. [maxwidth maxheight] - the maximum dimensions, in screen coordinates, of the client area, or ::dont-care"
@@ -2057,11 +2057,11 @@
 (defn set-window-title
   "Sets the window title, encoded as UTF-8, of the specified window.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * macOS: The window title will not be updated until the next time you process events.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose title to change
   2. title - the UTF-8 encoded window title"
   [window title]
@@ -2075,10 +2075,10 @@
 
   The current value is retained until the window is destroyed. The initial value is 0.
 
-  ### Note
+  ## Note
   * This function may be called from any thread. Access is not synchronized.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose pointer to set
   2. pointer - the new value"
   [window pointer]
@@ -2091,10 +2091,10 @@
 
   If the window is already visible or is in full screen mode, this function does nothing.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window to make visible"
   [window]
   (let [WINDOW (long window)]
@@ -2111,10 +2111,10 @@
 
   EGL: The context of the specified window must be current on the calling thread.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
 
-  ### Parameters
+  ## Parameters
   1. window - the window whose buffers to swap"
   [window]
   (let [WINDOW (long window)]
@@ -2131,12 +2131,12 @@
 
   This function does not apply to Vulkan. If you are rendering with Vulkan, see the present mode of your swapchain instead.
 
-  ### Note
+  ## Note
   * This function may be called from any thread.
   * This function is not called during window creation, leaving the swap interval set to whatever is the default on that platform. This is done because some swap interval extensions used by GLFW do not allow the swap interval to be reset to zero once it has been set to a non-zero value.
   * Some GPU drivers do not honor the requested swap interval, either because of a user setting that overrides the application's request or due to bugs in the driver.
 
-  ### Parameters
+  ## Parameters
   1. interval - the minimum number of screen updates to wait for until the buffers are swapped by SwapBuffers"
   [interval]
   (let [INTERVAL (int interval)]
@@ -2149,7 +2149,7 @@
 
   If GLFW has been successfully initialized, this function should be called before the application exits. If initialization fails, there is no need to call this function, as it is called by init before it returns failure.
 
-  ### Note
+  ## Note
   * This function may be called before init.
   * This function must only be called from the main thread.
   * This function must not be called from a callback.
@@ -2172,7 +2172,7 @@
 
   Event processing is not required for joystick input to work.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * This function must not be called from a callback."
   []
@@ -2195,11 +2195,11 @@
 
   Event processing is not required for joystick input to work.
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
   * This function must not be called from a callback.
 
-  ### Parameters
+  ## Parameters
   1. timeout - the maximum amount of time, in seconds, to wait"
   [timeout]
   (let [TIMEOUT (double timeout)]
@@ -2252,10 +2252,10 @@
   ::cocoa-frame-autosave | ::false | ::true or ::false
   ::cocoa-graphics-switching | ::false | ::true or ::false
 
-  ### Note
+  ## Note
   * This function must only be called from the main thread.
 
-  ### Parameters
+  ## Parameters
   1. hint - the window hint to set.
   2. value - the new value of the window hint"
   [hint value]
@@ -2266,7 +2266,7 @@
 (defn window-should-close
   "Returns the value of the close flag of the specified window.
 
-  ### Note
+  ## Note
   * This function may be called from any thread."
   [window]
   (let [WINDOW (long window)]
