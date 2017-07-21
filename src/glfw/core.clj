@@ -654,7 +654,7 @@
   #{::hat-up ::hat-right ::hat-right-up}
   #{::hat-down ::hat-right ::hat-right-down}
   #{::hat-left ::hat-up ::hat-left-up}
-  #{::hat-left ::hat-down ::hat-left-down}}
+  #{::hat-left ::hat-down ::hat-left-down}
 
   The diagonal directions are bitwise combinations of the primary (up, right, down and left) directions and you can test for these individually by ANDing it with the corresponding direction.
 
