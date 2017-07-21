@@ -571,9 +571,9 @@
 
   | Modes |
   | ------ |
-  | cursor |
-  | sticky-keys |
-  | sticky-mouse-buttons |
+  | ::cursor |
+  | ::sticky-keys |
+  | ::sticky-mouse-buttons |
 
   ## Note
   * This function must only be called from the main thread.
