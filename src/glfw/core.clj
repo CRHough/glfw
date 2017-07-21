@@ -977,7 +977,7 @@
   (impl/null->nil (GLFW/glfwGetTimerValue)))
 
 (defn get-version
-  "Retrieves the {:keys [major minor revision]} numbers of the GLFW library.
+  "Retrieves the {:keys [::major ::minor ::revision]} numbers of the GLFW library.
 
   It is intended for when you are using GLFW as a shared library and want to ensure that you are using the minimum required version.
 
@@ -987,15 +987,15 @@
   * This function may be called from any thread.
 
   ## Returns
-  a map containing major, minor and revision keys with the associated values"
+  a map containing ::major, ::minor and ::revision keys with the associated values"
   []
   (let [MAJOR (MemoryUtil/memAllocInt 1)
         MINOR (MemoryUtil/memAllocInt 1)
         REV (MemoryUtil/memAllocInt 1)]
     (GLFW/glfwGetVersion MAJOR MINOR REV)
-    (let [Value {:major (.get MAJOR 0)
-                 :minor (.get MINOR 0)
-                 :revision (.get REV 0)}]
+    (let [Value {::major (.get MAJOR 0)
+                 ::minor (.get MINOR 0)
+                 ::revision (.get REV 0)}]
       (MemoryUtil/memFree MAJOR)
       (MemoryUtil/memFree MINOR)
       (MemoryUtil/memFree REV)
@@ -1092,7 +1092,7 @@
     (GLFW/glfwGetWindowAttrib WINDOW ATTRIB)))
 
 (defn get-window-frame-size
-  "Retrieves the {:keys [left top right bottom]} border sizes, in screen coordinates, of the specified window.
+  "Retrieves the {:keys [::left ::top ::right ::bottom]} border sizes, in screen coordinates, of the specified window.
 
   This size includes the title bar, if the window has one. The size of the frame may vary depending on the window-related hints used to create it.
 
@@ -1105,7 +1105,7 @@
   1. window - the window whose frame size to query
 
   ## Returns
-  a map containing left, top, right and bottom keys with the associated values"
+  a map containing ::left, ::top, ::right and ::bottom keys with the associated values"
   [window]
   (let [WINDOW (long window)
         LEFT (MemoryUtil/memAllocInt 1)
@@ -1113,10 +1113,10 @@
         RIGHT (MemoryUtil/memAllocInt 1)
         BOTTOM (MemoryUtil/memAllocInt 1)]
     (GLFW/glfwGetWindowFrameSize WINDOW LEFT TOP RIGHT BOTTOM)
-    (let [Value {:left (.get LEFT 0)
-                 :top (.get TOP 0)
-                 :right (.get RIGHT 0)
-                 :bottom (.get BOTTOM 0)}]
+    (let [Value {::left (.get LEFT 0)
+                 ::top (.get TOP 0)
+                 ::right (.get RIGHT 0)
+                 ::bottom (.get BOTTOM 0)}]
       (MemoryUtil/memFree LEFT)
       (MemoryUtil/memFree TOP)
       (MemoryUtil/memFree RIGHT)
