@@ -2235,7 +2235,7 @@
   ::aux-buffers |	0 | 0 to Integer.MAX_VALUE
   ::samples |	0 | 0 to Integer.MAX_VALUE
   ::refresh-rate | ::dont-care | 0 to Integer.MAX_VALUE or ::dont-care
-  ::stereo | false | ::true or ::false
+  ::stereo | ::false | ::true or ::false
   ::srgb-capable | ::false | ::true or ::false
   ::doublebuffer | ::true | ::true or ::false
   ::client-api | ::opengl-api | ::no-api ::opengl-api ::opengl-es-api
