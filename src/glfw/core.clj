@@ -6,6 +6,262 @@
              MemoryUtil
              SharedLibrary]))
 
+(defn interpret [val]
+  (case val
+    ::version-major impl/version-major
+    ::version-minor impl/version-minor
+    ::version-revision impl/version-revision
+    ::true impl/TRUE
+    ::false impl/FALSE
+    ::release impl/release
+    ::press impl/press
+    ::repeat impl/repeat
+    ::hat-centered impl/hat-centered
+    ::hat-up impl/hat-up
+    ::hat-right impl/hat-right
+    ::hat-down impl/hat-down
+    ::hat-left impl/hat-left
+    ::hat-right-up impl/hat-right-up
+    ::hat-right-down impl/hat-right-down
+    ::hat-left-up impl/hat-left-up
+    ::hat-left-down impl/hat-left-down
+    ::key-unknown impl/key-unknown
+    ::key-space impl/key-space
+    ::key-apostrophe impl/key-apostrophe
+    ::key-comma impl/key-comma
+    ::key-minus impl/key-minus
+    ::key-period impl/key-period
+    ::key-slash impl/key-slash
+    ::key-0 impl/key-0
+    ::key-1 impl/key-1
+    ::key-2 impl/key-2
+    ::key-3 impl/key-3
+    ::key-4 impl/key-4
+    ::key-5 impl/key-5
+    ::key-6 impl/key-6
+    ::key-7 impl/key-7
+    ::key-8 impl/key-8
+    ::key-9 impl/key-9
+    ::key-semicolon impl/key-semicolon
+    ::key-equal impl/key-equal
+    ::key-a impl/key-a
+    ::key-b impl/key-b
+    ::key-c impl/key-c
+    ::key-d impl/key-d
+    ::key-e impl/key-e
+    ::key-f impl/key-f
+    ::key-g impl/key-g
+    ::key-h impl/key-h
+    ::key-i impl/key-i
+    ::key-j impl/key-j
+    ::key-k impl/key-k
+    ::key-l impl/key-l
+    ::key-m impl/key-m
+    ::key-n impl/key-n
+    ::key-o impl/key-o
+    ::key-p impl/key-p
+    ::key-q impl/key-q
+    ::key-r impl/key-r
+    ::key-s impl/key-s
+    ::key-t impl/key-t
+    ::key-u impl/key-u
+    ::key-v impl/key-v
+    ::key-w impl/key-w
+    ::key-x impl/key-x
+    ::key-y impl/key-y
+    ::key-z impl/key-z
+    ::key-left-bracket impl/key-left-bracket
+    ::key-backslash impl/key-backslash
+    ::key-right-bracket impl/key-right-bracket
+    ::key-grave-accent impl/key-grave-accent
+    ::key-world-1 impl/key-world-1
+    ::key-world-2 impl/key-world-2
+    ::key-escape impl/key-escape
+    ::key-enter impl/key-enter
+    ::key-tab impl/key-tab
+    ::key-backspace impl/key-backspace
+    ::key-insert impl/key-insert
+    ::key-delete impl/key-delete
+    ::key-right impl/key-right
+    ::key-left impl/key-left
+    ::key-down impl/key-down
+    ::key-up impl/key-up
+    ::key-page-up impl/key-page-up
+    ::key-page-down impl/key-page-down
+    ::key-home impl/key-home
+    ::key-end impl/key-end
+    ::key-caps-lock impl/key-caps-lock
+    ::key-scroll-lock impl/key-scroll-lock
+    ::key-num-lock impl/key-num-lock
+    ::key-print-screen impl/key-print-screen
+    ::key-pause impl/key-pause
+    ::key-f1 impl/key-f1
+    ::key-f2 impl/key-f2
+    ::key-f3 impl/key-f3
+    ::key-f4 impl/key-f4
+    ::key-f5 impl/key-f5
+    ::key-f6 impl/key-f6
+    ::key-f7 impl/key-f7
+    ::key-f8 impl/key-f8
+    ::key-f9 impl/key-f9
+    ::key-f10 impl/key-f10
+    ::key-f11 impl/key-f11
+    ::key-f12 impl/key-f12
+    ::key-f13 impl/key-f13
+    ::key-f14 impl/key-f14
+    ::key-f15 impl/key-f15
+    ::key-f16 impl/key-f16
+    ::key-f17 impl/key-f17
+    ::key-f18 impl/key-f18
+    ::key-f19 impl/key-f19
+    ::key-f20 impl/key-f20
+    ::key-f21 impl/key-f21
+    ::key-f22 impl/key-f22
+    ::key-f23 impl/key-f23
+    ::key-f24 impl/key-f24
+    ::key-f25 impl/key-f25
+    ::key-kp-0 impl/key-kp-0
+    ::key-kp-1 impl/key-kp-1
+    ::key-kp-2 impl/key-kp-2
+    ::key-kp-3 impl/key-kp-3
+    ::key-kp-4 impl/key-kp-4
+    ::key-kp-5 impl/key-kp-5
+    ::key-kp-6 impl/key-kp-6
+    ::key-kp-7 impl/key-kp-7
+    ::key-kp-8 impl/key-kp-8
+    ::key-kp-9 impl/key-kp-9
+    ::key-kp-decimal impl/key-kp-decimal
+    ::key-kp-divide impl/key-kp-divide
+    ::key-kp-multiply impl/key-kp-multiply
+    ::key-kp-subtract impl/key-kp-subtract
+    ::key-kp-add impl/key-kp-add
+    ::key-kp-enter impl/key-kp-enter
+    ::key-kp-equal impl/key-kp-equal
+    ::key-left-shift impl/key-left-shift
+    ::key-left-control impl/key-left-control
+    ::key-left-alt impl/key-left-alt
+    ::key-left-super impl/key-left-super
+    ::key-right-shift impl/key-right-shift
+    ::key-right-control impl/key-right-control
+    ::key-right-alt impl/key-right-alt
+    ::key-right-super impl/key-right-super
+    ::key-menu impl/key-menu
+    ::mod-shift impl/mod-shift
+    ::mod-control impl/mod-control
+    ::mod-alt impl/mod-alt
+    ::mod-super impl/mod-super
+    ::mouse-button-1 impl/mouse-button-1
+    ::mouse-button-2 impl/mouse-button-2
+    ::mouse-button-3 impl/mouse-button-3
+    ::mouse-button-4 impl/mouse-button-4
+    ::mouse-button-5 impl/mouse-button-5
+    ::mouse-button-6 impl/mouse-button-6
+    ::mouse-button-7 impl/mouse-button-7
+    ::mouse-button-8 impl/mouse-button-8
+    ::mouse-button-left impl/mouse-button-left
+    ::mouse-button-right impl/mouse-button-right
+    ::mouse-button-middle impl/mouse-button-middle
+    ::joystick-1 impl/joystick-1
+    ::joystick-2 impl/joystick-2
+    ::joystick-3 impl/joystick-3
+    ::joystick-4 impl/joystick-4
+    ::joystick-5 impl/joystick-5
+    ::joystick-6 impl/joystick-6
+    ::joystick-7 impl/joystick-7
+    ::joystick-8 impl/joystick-8
+    ::joystick-9 impl/joystick-9
+    ::joystick-10 impl/joystick-10
+    ::joystick-11 impl/joystick-11
+    ::joystick-12 impl/joystick-12
+    ::joystick-13 impl/joystick-13
+    ::joystick-14 impl/joystick-14
+    ::joystick-15 impl/joystick-15
+    ::joystick-16 impl/joystick-16
+    ::no-error impl/no-error
+    ::not-initialized impl/not-initialized
+    ::no-current-context impl/no-current-context
+    ::invalid-enum impl/invalid-enum
+    ::invalid-value impl/invalid-value
+    ::out-of-memory impl/out-of-memory
+    ::api-unavailable impl/api-unavailable
+    ::version-unavailable impl/version-unavailable
+    ::platform-error impl/platform-error
+    ::format-unavailable impl/format-unavailable
+    ::no-window-context impl/no-window-context
+    ::focused impl/focused
+    ::iconified impl/iconified
+    ::resizable impl/resizable
+    ::visible impl/visible
+    ::decorated impl/decorated
+    ::auto-iconify impl/auto-iconify
+    ::floating impl/floating
+    ::maximized impl/maximized
+    ::center-cursor impl/center-cursor
+    ::cursor impl/cursor
+    ::sticky-keys impl/sticky-keys
+    ::sticky-mouse-buttons impl/sticky-mouse-buttons
+    ::cursor-normal impl/cursor-normal
+    ::cursor-hidden impl/cursor-hidden
+    ::cursor-disabled impl/cursor-disabled
+    ::arrow-cursor impl/arrow-cursor
+    ::ibeam-cursor impl/ibeam-cursor
+    ::crosshair-cursor impl/crosshair-cursor
+    ::hand-cursor impl/hand-cursor
+    ::hresize-cursor impl/hresize-cursor
+    ::vresize-cursor impl/vresize-cursor
+    ::connected impl/connected
+    ::disconnected impl/disconnected
+    ::joystick-hat-buttons impl/joystick-hat-buttons
+    ::cocoa-chdir-resources impl/cocoa-chdir-resources
+    ::cocoa-menubar impl/cocoa-menubar
+    ::dont-care impl/dont-care
+    ::red-bits impl/red-bits
+    ::green-bits impl/green-bits
+    ::blue-bits impl/blue-bits
+    ::alpha-bits impl/alpha-bits
+    ::depth-bits impl/depth-bits
+    ::stencil-bits impl/stencil-bits
+    ::accum-red-bits impl/accum-red-bits
+    ::accum-green-bits impl/accum-green-bits
+    ::accum-blue-bits impl/accum-blue-bits
+    ::accum-alpha-bits impl/accum-alpha-bits
+    ::aux-buffers impl/aux-buffers
+    ::stereo impl/stereo
+    ::samples impl/samples
+    ::srgb-capable impl/srgb-capable
+    ::refresh-rate impl/refresh-rate
+    ::doublebuffer impl/doublebuffer
+    ::client-api impl/client-api
+    ::context-version-major impl/context-version-major
+    ::context-version-minor impl/context-version-minor
+    ::context-revision impl/context-revision
+    ::context-robustness impl/context-robustness
+    ::opengl-forward-compat impl/opengl-forward-compat
+    ::opengl-debug-context impl/opengl-debug-context
+    ::opengl-profile impl/opengl-profile
+    ::context-release-behavior impl/context-release-behavior
+    ::context-no-error impl/context-no-error
+    ::context-creation-api impl/context-creation-api
+    ::cocoa-retina-framebuffer impl/cocoa-retina-framebuffer
+    ::cocoa-frame-autosave impl/cocoa-frame-autosave
+    ::cocoa-graphics-switching impl/cocoa-graphics-switching
+    ::no-api impl/no-api
+    ::opengl-api impl/opengl-api
+    ::opengl-es-api impl/opengl-es-api
+    ::no-robustness impl/no-robustness
+    ::no-reset-notification impl/no-reset-notification
+    ::lose-context-on-reset impl/lose-context-on-reset
+    ::opengl-any-profile impl/opengl-any-profile
+    ::opengl-core-profile impl/opengl-core-profile
+    ::opengl-compat-profile impl/opengl-compat-profile
+    ::any-release-behavior impl/any-release-behavior
+    ::release-behavior-flush impl/release-behavior-flush
+    ::release-behavior-none impl/release-behavior-none
+    ::native-context-api impl/native-context-api
+    ::egl-context-api impl/egl-context-api
+    ::osmesa-context-api impl/osmesa-context-api
+    val))
+
 (defn get-library
   "Returns the glfw SharedLibrary."
   ^org.lwjgl.system.SharedLibrary
@@ -58,7 +314,7 @@
   #Returns
   a new cursor ready to use or nil if an error occured"
   [shape]
-  (let [SHAPE (int shape)]
+  (let [SHAPE (int (interpret shape))]
     (impl/null->nil (GLFW/glfwCreateStandardCursor SHAPE))))
 
 (defn create-window
@@ -332,7 +588,7 @@
   the input mode value"
   [window mode]
   (let [WINDOW (long window)
-        MODE (int mode)]
+        MODE (int (interpret mode))]
     (GLFW/glfwGetInputMode WINDOW MODE)))
 
 (defn get-joystick-axes
@@ -388,19 +644,17 @@
 (defn get-joystick-hats
   "Returns the state of all hats of the specified joystick.
 
-  This function returns the state of all hats of the specified joystick. Each element in the array is one of the following values:
+  This function returns a set of hats. Valid return values are:
 
-   Name                | Value
-   ------------------- | ------------------------------
-   glfw-hat-centered   | 0
-   glfw-hat-up         | 1
-   glfw-hat-right      | 2
-   glfw-hat-down       | 4
-   glfw-hat-left       | 8
-   glfw-hat-right-up   | glfw-hat-right | glfw-hat-up
-   glfw-hat-right-down | glfw-hat-right | glfw-hat-down
-   glfw-hat-left-up    | glfw-hat-left  | glfw-hat-up
-   glfw-hat-left-down  | glfw-hat-left  | glfw-hat-down
+  #{::hat-centered}
+  #{::hat-up}
+  #{::hat-right}
+  #{::hat-down}
+  #{::hat-left}
+  #{::hat-up ::hat-right ::hat-right-up}
+  #{::hat-down ::hat-right ::hat-right-down}
+  #{::hat-left ::hat-up ::hat-left-up}
+  #{::hat-left ::hat-down ::hat-left-down}}
 
   The diagonal directions are bitwise combinations of the primary (up, right, down and left) directions and you can test for these individually by ANDing it with the corresponding direction.
 
@@ -408,20 +662,29 @@
 
   #Note
   * Linux: Joystick hats are currently unimplemented.
-  * The returned array is allocated and freed by GLFW. You * should not free it yourself. It is valid until the specified joystick is * disconnected, this function is called again for that joystick or the library * is terminated.
   * This function must only be called from the main thread.
 
   #Parameters
   1. jid - the joystick to query
 
   #Returns
-  an array of hat states, or nil if the joystick is not present or an error occurred"
+  an set of hat states, or nil if the joystick is not present or an error occurred"
   [jid]
   (let [JID (int jid)
         BUFFER (GLFW/glfwGetJoystickHats JID)
-        RESULT (impl/ByteBuffer->seq BUFFER)]
+        RESULT (impl/ByteBuffer->seq (impl/null->nil BUFFER))]
     (impl/free BUFFER)
-    (impl/null->nil RESULT)))
+    (map
+      {impl/hat-centered #{::hat-centered}
+       impl/hat-up #{::hat-up}
+       impl/hat-right #{::hat-right}
+       impl/hat-down #{::hat-down}
+       impl/hat-left #{::hat-left}
+       (bit-or impl/hat-up impl/hat-right) #{::hat-up ::hat-right ::hat-right-up}
+       (bit-or impl/hat-down impl/hat-right) #{::hat-down ::hat-right ::hat-right-down}
+       (bit-or impl/hat-left impl/hat-up) #{::hat-left ::hat-up ::hat-left-up}
+       (bit-or impl/hat-left impl/hat-down) #{::hat-left ::hat-down ::hat-left-down}}
+      RESULT)))
 
 (defn get-joystick-name
   "Returns the name, encoded as UTF-8, of the specified joystick.
@@ -468,8 +731,11 @@
   one of press or release"
   [window key]
   (let [WINDOW (long window)
-        KEY (int key)]
-    (GLFW/glfwGetKey WINDOW KEY)))
+        KEY (int (interpret key))]
+    (get
+      {impl/press ::press
+       impl/release ::release}
+      (GLFW/glfwGetKey WINDOW KEY))))
 
 (defn get-key-name
   "Returns the layout-specific name of the specified printable key.
@@ -483,27 +749,27 @@
   This behavior allows you to always pass in the arguments in the key callback without modification.
 
   The printable keys are:
-  * key-apostrophe
-  * key-comma
-  * key-minus
-  * key-period
-  * key-slash
-  * key-semicolon
-  * key-equal
-  * key-left-bracket
-  * key-right-bracket
-  * key-backslash
-  * key-world-1
-  * key-world-2
-  * key-0 to key-9
-  * key-a to key-z
-  * key-kp-0 to key-kp-9
-  * key-kp-decimal
-  * key-kp-divide
-  * key-kp-multiply
-  * key-kp-subtract
-  * key-kp-add
-  * key-kp-equal
+  ::key-apostrophe
+  ::key-comma
+  ::key-minus
+  ::key-period
+  ::key-slash
+  ::key-semicolon
+  ::key-equal
+  ::key-left-bracket
+  ::key-right-bracket
+  ::key-backslash
+  ::key-world-1
+  ::key-world-2
+  ::key-0 to key-9
+  ::key-a to key-z
+  ::key-kp-0 to key-kp-9
+  ::key-kp-decimal
+  ::key-kp-divide
+  ::key-kp-multiply
+  ::key-kp-subtract
+  ::key-kp-add
+  ::key-kp-equal
 
   Names for printable keys depend on keyboard layout, while names for non-printable keys are the same across layouts but depend on the application language and should be localized along with other user interface text.
 
@@ -520,7 +786,7 @@
   the UTF-8 encoded, layout-specific name of the key, or nil"
   ^java.lang.String
   [key scancode]
-  (let [KEY (int key)
+  (let [KEY (int (interpret key))
         SCANCODE (int scancode)]
     (impl/null->nil (GLFW/glfwGetKeyName KEY SCANCODE))))
 
@@ -540,7 +806,7 @@
   #Returns
   the platform dependent scancode for the key, or -1 if an errror occurred"
   [key]
-  (let [KEY (int key)]
+  (let [KEY (int (interpret key))]
     (GLFW/glfwGetKeyScancode KEY)))
 
 (defn get-monitor-name
@@ -641,8 +907,11 @@
   one of press or release"
   [window button]
   (let [WINDOW (long window)
-        BUTTON (int button)]
-    (GLFW/glfwGetMouseButton WINDOW BUTTON)))
+        BUTTON (int (interpret button))]
+    (get
+      {impl/press ::press
+       impl/release ::release}
+      (GLFW/glfwGetMouseButton WINDOW BUTTON))))
 
 (defn get-primary-monitor
   "Returns the primary monitor.
@@ -751,11 +1020,11 @@
 
   It describes the version, platform, compiler and any platform-specific compile-time options. It should not be confused with the OpenGL or OpenGL ES version string, queried with glGetString.
 
-  Do not use the version string to parse the GLFW library version. The GetVersion function already provides the version of the library binary in numerical format.
+  Do not use the version string to parse the GLFW library version. The get-version function already provides the version of the library binary in numerical format.
 
   #Note
   * This function always succeeds.
-  * This function may be called before Init.
+  * This function may be called before init.
   * This function may be called from any thread.
   * The returned string is static and compile-time generated.
 
@@ -769,8 +1038,6 @@
   "Returns the current video mode of the specified monitor.
 
   If you have created a full screen window for that monitor, the return value will depend on whether that window is iconified.
-
-  The returned array is allocated and freed by GLFW. You should not free it yourself. It is valid until the specified monitor is disconnected or the library is terminated.
 
   #Note
   * This function must only be called from the main thread.
@@ -789,8 +1056,6 @@
 
   The returned array is sorted in ascending order, first by color bit depth (the sum of all channel depths) and then by resolution area (the product of width and height).
 
-  The returned array is allocated and freed by GLFW. You should not free it yourself. It is valid until the specified monitor is disconnected, this function is called again for that monitor or the library is terminated.
-
   #Note
   * This function must only be called from the main thread.
 
@@ -807,25 +1072,25 @@
   "Returns the value of an attribute of the specified window or its OpenGL or OpenGL ES context.
 
   #Attributes
-  focused
-  iconified
-  resizable
-  visible
-  decorated
-  floating
-  maximized
-  center-cursor
-  client-api
-  context-version-major
-  context-version-minor
-  context-revision
-  context-robustness
-  opengl-forward-compat
-  opengl-debug-context
-  opengl-profile
-  context-release-behavior
-  context-no-error
-  context-creation-api
+  ::focused
+  ::iconified
+  ::resizable
+  ::visible
+  ::decorated
+  ::floating
+  ::maximized
+  ::center-cursor
+  ::client-api
+  ::context-version-major
+  ::context-version-minor
+  ::context-revision
+  ::context-robustness
+  ::opengl-forward-compat
+  ::opengl-debug-context
+  ::opengl-profile
+  ::context-release-behavior
+  ::context-no-error
+  ::context-creation-api
 
   #Note
   * This function must only be called from the main thread.
@@ -836,7 +1101,7 @@
   2. attrib - the window attribute whose value to return."
   [window attrib]
   (let [WINDOW (long window)
-        ATTRIB (int attrib)]
+        ATTRIB (int (interpret attrib))]
     (GLFW/glfwGetWindowAttrib WINDOW ATTRIB)))
 
 (defn get-window-frame-size
@@ -881,10 +1146,10 @@
   1. window - the window to query
 
   #Returns
-  the monitor, or NULL if the window is in windowed mode or an error occurred"
+  the monitor, or nil if the window is in windowed mode or an error occurred"
   [window]
   (let [WINDOW (long window)]
-    (GLFW/glfwGetWindowMonitor WINDOW)))
+    (impl/null->nil (GLFW/glfwGetWindowMonitor WINDOW))))
 
 (defn get-window-pos
   "Retrieves the [x y] position, in screen coordinates, of the upper-left corner of the client area of the specified window.
@@ -999,11 +1264,11 @@
   * This function must only be called from the main thread.
 
   #Parameters
-  1. hint - the init hint to set. One of: joystick-hat-buttons cocoa-chdir-resources cocoa-menubar
+  1. hint - the init hint to set. One of: ::joystick-hat-buttons ::cocoa-chdir-resources ::cocoa-menubar
   2. value - the new value of the init hint"
   [hint value]
-  (let [HINT (int hint)
-        VALUE (int value)]
+  (let [HINT (int (interpret hint))
+        VALUE (int (interpret value))]
     (GLFW/glfwInitHint HINT VALUE)))
 
 (defn joystick-present
@@ -1358,9 +1623,9 @@
   * cursor-disabled hides and grabs the cursor, providing virtual and unlimited cursor movement. This is useful for implementing for example 3D camera controls.
 
   #Modes
-  cursor
-  sticky-keys
-  sticky-mouse-buttons
+  ::cursor
+  ::sticky-keys
+  ::sticky-mouse-buttons
 
   If mode is sticky-keys, the value must be either TRUE to enable sticky keys, or FALSE to disable it. If sticky keys are enabled, a key press will ensure that GetKey returns PRESS the next time it is called even if the key had been released before the call. This is useful when you are only interested in whether keys have been pressed but not when or in which order.
 
@@ -1375,8 +1640,8 @@
   3. value - the new value of the specified input mode"
   [window mode value]
   (let [WINDOW (long window)
-        MODE (int mode)
-        VALUE (int value)]
+        MODE (int (interpret mode))
+        VALUE (int (interpret value))]
     (GLFW/glfwSetInputMode WINDOW MODE VALUE)))
 
 (defn set-joystick-callback
@@ -1527,10 +1792,10 @@
   Calling get-window-attrib will always return the latest value, even if that value is ignored by the current mode of the window. One of:
 
   #Attributes
-  decorated
-  resizable
-  floating
-  auto-iconify
+  ::decorated
+  ::resizable
+  ::floating
+  ::auto-iconify
 
   #Note
   * This function must only be called from the main thread.
@@ -1541,8 +1806,8 @@
   3. value - the value to set"
   [window attrib value]
   (let [WINDOW (long window)
-        ATTRIB (int attrib)
-        VALUE (int value)]
+        ATTRIB (int (interpret attrib))
+        VALUE (int (interpret value))]
     (GLFW/glfwSetWindowAttrib WINDOW ATTRIB VALUE)))
 
 (defn set-window-close-callback
@@ -1965,82 +2230,82 @@
   This function does not check whether the specified hint values are valid. If you set hints to invalid values this will instead be reported by the next call to create-window.
 
   #Defaults
-  resizable -	true
-  visible -	true
-  decorated -	true
-  focused -	true
-  auto-iconify - true
-  floating - false
-  maximized -	false
-  center-cursor -	true
-  red-bits - 8
-  green-bits - 8
-  blue-bits -	8
-  alpha-bits - 8
-  depth-bits - 24
-  stencil-bits - 8
-  accum-red-bits - 0
-  accum-green-bits - 0
-  accum-blue-bits -	0
-  accum-alpha-bits - 0
-  aux-buffers -	0
-  samples -	0
-  refresh-rate - dont-care
-  stereo - false
-  srgb-capable - false
-  doublebuffer - true
-  client-api - opengl-api
-  context-creation-api - native-context-api
-  context-version-major -	1
-  context-version-minor -	0
-  context-robustness - no-robustness
-  context-release-behavior - any-release-behavior
-  context-no-error - false
-  opengl-forward-compat -	false
-  opengl-debug-context - false
-  opengl-profile - opengl-any-profile
-  cocoa-retina-framebuffer - true
-  cocoa-frame-autosave - false
-  cocoa-graphics-switching - false
+  ::resizable -	::true
+  ::visible -	::true
+  ::decorated -	::true
+  ::focused -	::true
+  ::auto-iconify - ::true
+  ::floating - ::false
+  ::maximized -	::false
+  ::center-cursor -	::true
+  ::red-bits - 8
+  ::green-bits - 8
+  ::blue-bits -	8
+  ::alpha-bits - 8
+  ::depth-bits - 24
+  ::stencil-bits - 8
+  ::accum-red-bits - 0
+  ::accum-green-bits - 0
+  ::accum-blue-bits -	0
+  ::accum-alpha-bits - 0
+  ::aux-buffers -	0
+  ::samples -	0
+  ::refresh-rate - ::dont-care
+  ::stereo - false
+  ::srgb-capable - ::false
+  ::doublebuffer - ::true
+  ::client-api - ::opengl-api
+  ::context-creation-api - ::native-context-api
+  ::context-version-major -	1
+  ::context-version-minor -	0
+  ::context-robustness - ::no-robustness
+  ::context-release-behavior - ::any-release-behavior
+  ::context-no-error - ::false
+  ::opengl-forward-compat -	::false
+  ::opengl-debug-context - ::false
+  ::opengl-profile - ::opengl-any-profile
+  ::cocoa-retina-framebuffer - ::true
+  ::cocoa-frame-autosave - ::false
+  ::cocoa-graphics-switching - ::false
 
   #supported values
-  resizable -	true or false
-  visible -	true or false
-  decorated -	true or false
-  focused -	true or false
-  auto-iconify - true or false
-  floating - false or false
-  maximized -	false or false
-  center-cursor -	true or false
-  red-bits - 0 to Integer.MAX_VALUE or dont-care
-  green-bits - 0 to Integer.MAX_VALUE or dont-care
-  blue-bits -	0 to Integer.MAX_VALUE or dont-care
-  alpha-bits - 0 to Integer.MAX_VALUE or dont-care
-  depth-bits - 0 to Integer.MAX_VALUE or dont-care
-  stencil-bits - 0 to Integer.MAX_VALUE or dont-care
-  accum-red-bits - 0 to Integer.MAX_VALUE or dont-care
-  accum-green-bits - 0 to Integer.MAX_VALUE or dont-care
-  accum-blue-bits -	0 to Integer.MAX_VALUE or dont-care
-  accum-alpha-bits - 0 to Integer.MAX_VALUE or dont-care
-  aux-buffers -	0 to Integer.MAX_VALUE
-  samples -	0 to Integer.MAX_VALUE
-  refresh-rate - 0 to Integer.MAX_VALUE or dont-care
-  stereo - true or false
-  srgb-capable - true or false
-  doublebuffer - true or false
-  client-api - no-api opengl-api opengl-es-api
-  context-creation-api - native-context-api egl-context-api osmesa-context-api
-  context-version-major -	any valid major version number of the chosen client api
-  context-version-minor -	any valid minor version number of the chosen client api
-  context-robustness - no-robustness no-reset-notification lose-context-on-reset
-  context-release-behavior - any-release-behavior release-behavior-flush release-behavior-none
-  context-no-error - true or false
-  opengl-forward-compat -	true or false
-  opengl-debug-context - true or false
-  opengl-profile - opengl-any-profile opengl-core-profile opengl-compat-profile
-  cocoa-retina-framebuffer - true or false
-  cocoa-frame-autosave - true or false
-  cocoa-graphics-switching - true or false
+  ::resizable -	::true or ::false
+  ::visible -	::true or ::false
+  ::decorated -	::true or ::false
+  ::focused -	::true or ::false
+  ::auto-iconify - ::true or ::false
+  ::floating - ::false or ::false
+  ::maximized -	::false or ::false
+  ::center-cursor -	::true or ::false
+  ::red-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::green-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::blue-bits -	0 to Integer.MAX_VALUE or ::dont-care
+  ::alpha-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::depth-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::stencil-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::accum-red-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::accum-green-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::accum-blue-bits -	0 to Integer.MAX_VALUE or ::dont-care
+  ::accum-alpha-bits - 0 to Integer.MAX_VALUE or ::dont-care
+  ::aux-buffers -	0 to Integer.MAX_VALUE
+  ::samples -	0 to Integer.MAX_VALUE
+  ::refresh-rate - 0 to Integer.MAX_VALUE or ::dont-care
+  ::stereo - ::true or ::false
+  ::srgb-capable - ::true or ::false
+  ::doublebuffer - ::true or ::false
+  ::client-api - ::no-api ::opengl-api ::opengl-es-api
+  ::context-creation-api - ::native-context-api ::egl-context-api ::osmesa-context-api
+  ::context-version-major -	any valid major version number of the chosen client api
+  ::context-version-minor -	any valid minor version number of the chosen client api
+  ::context-robustness - ::no-robustness ::no-reset-notification ::lose-context-on-reset
+  ::context-release-behavior - ::any-release-behavior ::release-behavior-flush ::release-behavior-none
+  ::context-no-error - ::true or ::false
+  ::opengl-forward-compat -	::true or ::false
+  ::opengl-debug-context - ::true or ::false
+  ::opengl-profile - ::opengl-any-profile ::opengl-core-profile ::opengl-compat-profile
+  ::cocoa-retina-framebuffer - ::true or ::false
+  ::cocoa-frame-autosave - ::true or ::false
+  ::cocoa-graphics-switching - ::true or ::false
 
   #Note
   * This function must only be called from the main thread.
@@ -2049,8 +2314,8 @@
   1. hint - the window hint to set.
   2. value - the new value of the window hint"
   [hint value]
-  (let [HINT (int hint)
-        VALUE (int (impl/boolean->int value))]
+  (let [HINT (int (interpret hint))
+        VALUE (int (interpret value))]
     (GLFW/glfwWindowHint HINT VALUE)))
 
 (defn window-should-close
@@ -2061,256 +2326,3 @@
   [window]
   (let [WINDOW (long window)]
     (GLFW/glfwWindowShouldClose WINDOW)))
-
-(def version-major GLFW/GLFW_VERSION_MAJOR)
-(def version-minor GLFW/GLFW_VERSION_MINOR)
-(def version-revision GLFW/GLFW_VERSION_REVISION)
-(def TRUE GLFW/GLFW_TRUE)
-(def FALSE GLFW/GLFW_FALSE)
-(def release GLFW/GLFW_RELEASE)
-(def press GLFW/GLFW_PRESS)
-(def repeat GLFW/GLFW_REPEAT)
-(def hat-centered GLFW/GLFW_HAT_CENTERED)
-(def hat-up GLFW/GLFW_HAT_UP)
-(def hat-right GLFW/GLFW_HAT_RIGHT)
-(def hat-down GLFW/GLFW_HAT_DOWN)
-(def hat-left GLFW/GLFW_HAT_LEFT)
-(def hat-right-up GLFW/GLFW_HAT_RIGHT_UP)
-(def hat-right-down GLFW/GLFW_HAT_RIGHT_DOWN)
-(def hat-left-up GLFW/GLFW_HAT_LEFT_UP)
-(def hat-left-down GLFW/GLFW_HAT_LEFT_DOWN)
-(def key-unknown GLFW/GLFW_KEY_UNKNOWN)
-(def key-space GLFW/GLFW_KEY_SPACE)
-(def key-apostrophe GLFW/GLFW_KEY_APOSTROPHE)
-(def key-comma GLFW/GLFW_KEY_COMMA)
-(def key-minus GLFW/GLFW_KEY_MINUS)
-(def key-period GLFW/GLFW_KEY_PERIOD)
-(def key-slash GLFW/GLFW_KEY_SLASH)
-(def key-0 GLFW/GLFW_KEY_0)
-(def key-1 GLFW/GLFW_KEY_1)
-(def key-2 GLFW/GLFW_KEY_2)
-(def key-3 GLFW/GLFW_KEY_3)
-(def key-4 GLFW/GLFW_KEY_4)
-(def key-5 GLFW/GLFW_KEY_5)
-(def key-6 GLFW/GLFW_KEY_6)
-(def key-7 GLFW/GLFW_KEY_7)
-(def key-8 GLFW/GLFW_KEY_8)
-(def key-9 GLFW/GLFW_KEY_9)
-(def key-semicolon GLFW/GLFW_KEY_SEMICOLON)
-(def key-equal GLFW/GLFW_KEY_EQUAL)
-(def key-a GLFW/GLFW_KEY_A)
-(def key-b GLFW/GLFW_KEY_B)
-(def key-c GLFW/GLFW_KEY_C)
-(def key-d GLFW/GLFW_KEY_D)
-(def key-e GLFW/GLFW_KEY_E)
-(def key-f GLFW/GLFW_KEY_F)
-(def key-g GLFW/GLFW_KEY_G)
-(def key-h GLFW/GLFW_KEY_H)
-(def key-i GLFW/GLFW_KEY_I)
-(def key-j GLFW/GLFW_KEY_J)
-(def key-k GLFW/GLFW_KEY_K)
-(def key-l GLFW/GLFW_KEY_L)
-(def key-m GLFW/GLFW_KEY_M)
-(def key-n GLFW/GLFW_KEY_N)
-(def key-o GLFW/GLFW_KEY_O)
-(def key-p GLFW/GLFW_KEY_P)
-(def key-q GLFW/GLFW_KEY_Q)
-(def key-r GLFW/GLFW_KEY_R)
-(def key-s GLFW/GLFW_KEY_S)
-(def key-t GLFW/GLFW_KEY_T)
-(def key-u GLFW/GLFW_KEY_U)
-(def key-v GLFW/GLFW_KEY_V)
-(def key-w GLFW/GLFW_KEY_W)
-(def key-x GLFW/GLFW_KEY_X)
-(def key-y GLFW/GLFW_KEY_Y)
-(def key-z GLFW/GLFW_KEY_Z)
-(def key-left-bracket GLFW/GLFW_KEY_LEFT_BRACKET)
-(def key-backslash GLFW/GLFW_KEY_BACKSLASH)
-(def key-right-bracket GLFW/GLFW_KEY_RIGHT_BRACKET)
-(def key-grave-accent GLFW/GLFW_KEY_GRAVE_ACCENT)
-(def key-world-1 GLFW/GLFW_KEY_WORLD_1)
-(def key-world-2 GLFW/GLFW_KEY_WORLD_2)
-(def key-escape GLFW/GLFW_KEY_ESCAPE)
-(def key-enter GLFW/GLFW_KEY_ENTER)
-(def key-tab GLFW/GLFW_KEY_TAB)
-(def key-backspace GLFW/GLFW_KEY_BACKSPACE)
-(def key-insert GLFW/GLFW_KEY_INSERT)
-(def key-delete GLFW/GLFW_KEY_DELETE)
-(def key-right GLFW/GLFW_KEY_RIGHT)
-(def key-left GLFW/GLFW_KEY_LEFT)
-(def key-down GLFW/GLFW_KEY_DOWN)
-(def key-up GLFW/GLFW_KEY_UP)
-(def key-page-up GLFW/GLFW_KEY_PAGE_UP)
-(def key-page-down GLFW/GLFW_KEY_PAGE_DOWN)
-(def key-home GLFW/GLFW_KEY_HOME)
-(def key-end GLFW/GLFW_KEY_END)
-(def key-caps-lock GLFW/GLFW_KEY_CAPS_LOCK)
-(def key-scroll-lock GLFW/GLFW_KEY_SCROLL_LOCK)
-(def key-num-lock GLFW/GLFW_KEY_NUM_LOCK)
-(def key-print-screen GLFW/GLFW_KEY_PRINT_SCREEN)
-(def key-pause GLFW/GLFW_KEY_PAUSE)
-(def key-f1 GLFW/GLFW_KEY_F1)
-(def key-f2 GLFW/GLFW_KEY_F2)
-(def key-f3 GLFW/GLFW_KEY_F3)
-(def key-f4 GLFW/GLFW_KEY_F4)
-(def key-f5 GLFW/GLFW_KEY_F5)
-(def key-f6 GLFW/GLFW_KEY_F6)
-(def key-f7 GLFW/GLFW_KEY_F7)
-(def key-f8 GLFW/GLFW_KEY_F8)
-(def key-f9 GLFW/GLFW_KEY_F9)
-(def key-f10 GLFW/GLFW_KEY_F10)
-(def key-f11 GLFW/GLFW_KEY_F11)
-(def key-f12 GLFW/GLFW_KEY_F12)
-(def key-f13 GLFW/GLFW_KEY_F13)
-(def key-f14 GLFW/GLFW_KEY_F14)
-(def key-f15 GLFW/GLFW_KEY_F15)
-(def key-f16 GLFW/GLFW_KEY_F16)
-(def key-f17 GLFW/GLFW_KEY_F17)
-(def key-f18 GLFW/GLFW_KEY_F18)
-(def key-f19 GLFW/GLFW_KEY_F19)
-(def key-f20 GLFW/GLFW_KEY_F20)
-(def key-f21 GLFW/GLFW_KEY_F21)
-(def key-f22 GLFW/GLFW_KEY_F22)
-(def key-f23 GLFW/GLFW_KEY_F23)
-(def key-f24 GLFW/GLFW_KEY_F24)
-(def key-f25 GLFW/GLFW_KEY_F25)
-(def key-kp-0 GLFW/GLFW_KEY_KP_0)
-(def key-kp-1 GLFW/GLFW_KEY_KP_1)
-(def key-kp-2 GLFW/GLFW_KEY_KP_2)
-(def key-kp-3 GLFW/GLFW_KEY_KP_3)
-(def key-kp-4 GLFW/GLFW_KEY_KP_4)
-(def key-kp-5 GLFW/GLFW_KEY_KP_5)
-(def key-kp-6 GLFW/GLFW_KEY_KP_6)
-(def key-kp-7 GLFW/GLFW_KEY_KP_7)
-(def key-kp-8 GLFW/GLFW_KEY_KP_8)
-(def key-kp-9 GLFW/GLFW_KEY_KP_9)
-(def key-kp-decimal GLFW/GLFW_KEY_KP_DECIMAL)
-(def key-kp-divide GLFW/GLFW_KEY_KP_DIVIDE)
-(def key-kp-multiply GLFW/GLFW_KEY_KP_MULTIPLY)
-(def key-kp-subtract GLFW/GLFW_KEY_KP_SUBTRACT)
-(def key-kp-add GLFW/GLFW_KEY_KP_ADD)
-(def key-kp-enter GLFW/GLFW_KEY_KP_ENTER)
-(def key-kp-equal GLFW/GLFW_KEY_KP_EQUAL)
-(def key-left-shift GLFW/GLFW_KEY_LEFT_SHIFT)
-(def key-left-control GLFW/GLFW_KEY_LEFT_CONTROL)
-(def key-left-alt GLFW/GLFW_KEY_LEFT_ALT)
-(def key-left-super GLFW/GLFW_KEY_LEFT_SUPER)
-(def key-right-shift GLFW/GLFW_KEY_RIGHT_SHIFT)
-(def key-right-control GLFW/GLFW_KEY_RIGHT_CONTROL)
-(def key-right-alt GLFW/GLFW_KEY_RIGHT_ALT)
-(def key-right-super GLFW/GLFW_KEY_RIGHT_SUPER)
-(def key-menu GLFW/GLFW_KEY_MENU)
-(def mod-shift GLFW/GLFW_MOD_SHIFT)
-(def mod-control GLFW/GLFW_MOD_CONTROL)
-(def mod-alt GLFW/GLFW_MOD_ALT)
-(def mod-super GLFW/GLFW_MOD_SUPER)
-(def mouse-button-1 GLFW/GLFW_MOUSE_BUTTON_1)
-(def mouse-button-2 GLFW/GLFW_MOUSE_BUTTON_2)
-(def mouse-button-3 GLFW/GLFW_MOUSE_BUTTON_3)
-(def mouse-button-4 GLFW/GLFW_MOUSE_BUTTON_4)
-(def mouse-button-5 GLFW/GLFW_MOUSE_BUTTON_5)
-(def mouse-button-6 GLFW/GLFW_MOUSE_BUTTON_6)
-(def mouse-button-7 GLFW/GLFW_MOUSE_BUTTON_7)
-(def mouse-button-8 GLFW/GLFW_MOUSE_BUTTON_8)
-(def mouse-button-left GLFW/GLFW_MOUSE_BUTTON_LEFT)
-(def mouse-button-right GLFW/GLFW_MOUSE_BUTTON_RIGHT)
-(def mouse-button-middle GLFW/GLFW_MOUSE_BUTTON_MIDDLE)
-(def joystick-1 GLFW/GLFW_JOYSTICK_1)
-(def joystick-2 GLFW/GLFW_JOYSTICK_2)
-(def joystick-3 GLFW/GLFW_JOYSTICK_3)
-(def joystick-4 GLFW/GLFW_JOYSTICK_4)
-(def joystick-5 GLFW/GLFW_JOYSTICK_5)
-(def joystick-6 GLFW/GLFW_JOYSTICK_6)
-(def joystick-7 GLFW/GLFW_JOYSTICK_7)
-(def joystick-8 GLFW/GLFW_JOYSTICK_8)
-(def joystick-9 GLFW/GLFW_JOYSTICK_9)
-(def joystick-10 GLFW/GLFW_JOYSTICK_10)
-(def joystick-11 GLFW/GLFW_JOYSTICK_11)
-(def joystick-12 GLFW/GLFW_JOYSTICK_12)
-(def joystick-13 GLFW/GLFW_JOYSTICK_13)
-(def joystick-14 GLFW/GLFW_JOYSTICK_14)
-(def joystick-15 GLFW/GLFW_JOYSTICK_15)
-(def joystick-16 GLFW/GLFW_JOYSTICK_16)
-(def no-error GLFW/GLFW_NO_ERROR)
-(def not-initialized GLFW/GLFW_NOT_INITIALIZED)
-(def no-current-context GLFW/GLFW_NO_CURRENT_CONTEXT)
-(def invalid-enum GLFW/GLFW_INVALID_ENUM)
-(def invalid-value GLFW/GLFW_INVALID_VALUE)
-(def out-of-memory GLFW/GLFW_OUT_OF_MEMORY)
-(def api-unavailable GLFW/GLFW_API_UNAVAILABLE)
-(def version-unavailable GLFW/GLFW_VERSION_UNAVAILABLE)
-(def platform-error GLFW/GLFW_PLATFORM_ERROR)
-(def format-unavailable GLFW/GLFW_FORMAT_UNAVAILABLE)
-(def no-window-context GLFW/GLFW_NO_WINDOW_CONTEXT)
-(def focused GLFW/GLFW_FOCUSED)
-(def iconified GLFW/GLFW_ICONIFIED)
-(def resizable GLFW/GLFW_RESIZABLE)
-(def visible GLFW/GLFW_VISIBLE)
-(def decorated GLFW/GLFW_DECORATED)
-(def auto-iconify GLFW/GLFW_AUTO_ICONIFY)
-(def floating GLFW/GLFW_FLOATING)
-(def maximized GLFW/GLFW_MAXIMIZED)
-(def center-cursor GLFW/GLFW_CENTER_CURSOR)
-(def cursor GLFW/GLFW_CURSOR)
-(def sticky-keys GLFW/GLFW_STICKY_KEYS)
-(def sticky-mouse-buttons GLFW/GLFW_STICKY_MOUSE_BUTTONS)
-(def cursor-normal GLFW/GLFW_CURSOR_NORMAL)
-(def cursor-hidden GLFW/GLFW_CURSOR_HIDDEN)
-(def cursor-disabled GLFW/GLFW_CURSOR_DISABLED)
-(def arrow-cursor GLFW/GLFW_ARROW_CURSOR)
-(def ibeam-cursor GLFW/GLFW_IBEAM_CURSOR)
-(def crosshair-cursor GLFW/GLFW_CROSSHAIR_CURSOR)
-(def hand-cursor GLFW/GLFW_HAND_CURSOR)
-(def hresize-cursor GLFW/GLFW_HRESIZE_CURSOR)
-(def vresize-cursor GLFW/GLFW_VRESIZE_CURSOR)
-(def connected GLFW/GLFW_CONNECTED)
-(def disconnected GLFW/GLFW_DISCONNECTED)
-(def joystick-hat-buttons GLFW/GLFW_JOYSTICK_HAT_BUTTONS)
-(def cocoa-chdir-resources GLFW/GLFW_COCOA_CHDIR_RESOURCES)
-(def cocoa-menubar GLFW/GLFW_COCOA_MENUBAR)
-(def dont-care GLFW/GLFW_DONT_CARE)
-(def red-bits GLFW/GLFW_RED_BITS)
-(def green-bits GLFW/GLFW_GREEN_BITS)
-(def blue-bits GLFW/GLFW_BLUE_BITS)
-(def alpha-bits GLFW/GLFW_ALPHA_BITS)
-(def depth-bits GLFW/GLFW_DEPTH_BITS)
-(def stencil-bits GLFW/GLFW_STENCIL_BITS)
-(def accum-red-bits GLFW/GLFW_ACCUM_RED_BITS)
-(def accum-green-bits GLFW/GLFW_ACCUM_GREEN_BITS)
-(def accum-blue-bits GLFW/GLFW_ACCUM_BLUE_BITS)
-(def accum-alpha-bits GLFW/GLFW_ACCUM_ALPHA_BITS)
-(def aux-buffers GLFW/GLFW_AUX_BUFFERS)
-(def stereo GLFW/GLFW_STEREO)
-(def samples GLFW/GLFW_SAMPLES)
-(def srgb-capable GLFW/GLFW_SRGB_CAPABLE)
-(def refresh-rate GLFW/GLFW_REFRESH_RATE)
-(def doublebuffer GLFW/GLFW_DOUBLEBUFFER)
-(def client-api GLFW/GLFW_CLIENT_API)
-(def context-version-major GLFW/GLFW_CONTEXT_VERSION_MAJOR)
-(def context-version-minor GLFW/GLFW_CONTEXT_VERSION_MINOR)
-(def context-revision GLFW/GLFW_CONTEXT_REVISION)
-(def context-robustness GLFW/GLFW_CONTEXT_ROBUSTNESS)
-(def opengl-forward-compat GLFW/GLFW_OPENGL_FORWARD_COMPAT)
-(def opengl-debug-context GLFW/GLFW_OPENGL_DEBUG_CONTEXT)
-(def opengl-profile GLFW/GLFW_OPENGL_PROFILE)
-(def context-release-behavior GLFW/GLFW_CONTEXT_RELEASE_BEHAVIOR)
-(def context-no-error GLFW/GLFW_CONTEXT_NO_ERROR)
-(def context-creation-api GLFW/GLFW_CONTEXT_CREATION_API)
-(def cocoa-retina-framebuffer GLFW/GLFW_COCOA_RETINA_FRAMEBUFFER)
-(def cocoa-frame-autosave GLFW/GLFW_COCOA_FRAME_AUTOSAVE)
-(def cocoa-graphics-switching GLFW/GLFW_COCOA_GRAPHICS_SWITCHING)
-(def no-api GLFW/GLFW_NO_API)
-(def opengl-api GLFW/GLFW_OPENGL_API)
-(def opengl-es-api GLFW/GLFW_OPENGL_ES_API)
-(def no-robustness GLFW/GLFW_NO_ROBUSTNESS)
-(def no-reset-notification GLFW/GLFW_NO_RESET_NOTIFICATION)
-(def lose-context-on-reset GLFW/GLFW_LOSE_CONTEXT_ON_RESET)
-(def opengl-any-profile GLFW/GLFW_OPENGL_ANY_PROFILE)
-(def opengl-core-profile GLFW/GLFW_OPENGL_CORE_PROFILE)
-(def opengl-compat-profile GLFW/GLFW_OPENGL_COMPAT_PROFILE)
-(def any-release-behavior GLFW/GLFW_ANY_RELEASE_BEHAVIOR)
-(def release-behavior-flush GLFW/GLFW_RELEASE_BEHAVIOR_FLUSH)
-(def release-behavior-none GLFW/GLFW_RELEASE_BEHAVIOR_NONE)
-(def native-context-api GLFW/GLFW_NATIVE_CONTEXT_API)
-(def egl-context-api GLFW/GLFW_EGL_CONTEXT_API)
-(def osmesa-context-api GLFW/GLFW_OSMESA_CONTEXT_API)
